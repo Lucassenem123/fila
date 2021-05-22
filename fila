@@ -1,0 +1,113 @@
+package facul1;
+
+public class filapilha2 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		String pilha[][];
+		pilha = new String[10][4];
+		int i;
+		int in = -1;
+
+		String caixa[];
+		caixa = new String[4];
+
+		String altura;
+		String profundidade;
+		String largura;
+		String fragil;
+
+		char escolher = 'N';
+		int opcao;
+
+		do {
+			System.out.println("---------Menu---------");
+			System.out.println("1. Empilhar caixa\n" + "2. Desempilhar caixa\n" + "3. Sair");
+			System.out.println("----------------------");
+			opcao = sc.nextInt();
+
+			if (opcao > 3 || opcao < 1) {
+				System.out.println("Opção invalida - informe uma opção entre 1 e 3");
+				escolher = 'N';
+			} else {
+				if (opcao == 3) {
+					escolher = 'S';
+					break;
+				}
+			}
+
+			switch (opcao) {
+			case 1: {
+				System.out.println("Digite a altura");
+				altura = sc.next();
+				System.out.println("Digite a profundidade");
+				profundidade = sc.next();
+				System.out.println("Digite a largura");
+				largura = sc.next();
+				System.out.println("Caixa frágil? (SIM/NAO)");
+				fragil = sc.next();
+				// empilhar(caixa, pilha);
+
+				caixa[0] = altura;
+				caixa[1] = profundidade;
+				caixa[2] = largura;
+				caixa[3] = fragil;
+
+				break;
+			}
+
+			case 2: {
+				//pilha = desempilhar();
+				System.out.println(
+						"Caixa: " + (i + 1) + " | Altura: " + pilha[0] + " | profundidade: " + pilha[1]);
+				break;
+
+			}
+
+			}
+
+		} while (escolher == 'N');
+
+	}
+
+	public static String empilhar(String[] caixa, String pilha[][], int in) {
+		if (in < pilha.length - 1) {
+			pilha[in][0] = caixa[0];
+			pilha[in][1] = caixa[1];
+			pilha[in][2] = caixa[2];
+			pilha[in][3] = caixa[3];
+		} else {
+			System.out.println("Voce chegou ao máximo de caixas empilhadas");
+		}
+		return null;
+	}
+
+	public static String[][] desempilhar(String pilha[][], int in) {
+		int i;
+		String novapilha[][];
+		novapilha = new String[pilha.length][4];
+
+		//if (pilhavazia()) {
+			//System.out.println("Nenhuma caixa para desempilhar");
+		//}
+		for (i = 0; i < pilha.length; i++) {
+			if (i == in) {
+				break;
+
+			}
+			novapilha[i] = pilha[i];
+		}
+
+		return null;
+
+	}
+
+	public static String pilhavazia(int in) {
+		if (in == -1) {
+		}
+
+		return null;
+	}
+
+}
