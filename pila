@@ -1,0 +1,114 @@
+package facul1;
+
+import java.util.Scanner;
+
+public class filapilha2 {
+
+	public static String[][] pilha = new String[10][4];
+	public static int in = -1;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String caixa[];
+		caixa = new String[4];
+		char escolher = 'N';
+		int opcao;
+		int i = 0;
+
+		String fragil;
+
+		do {
+			System.out.println("---------Menu---------");
+			System.out.println("1. Empilhar caixa\n" + "2. Desempilhar caixa\n" + "3. Sair");
+			System.out.println("----------------------");
+			opcao = sc.nextInt();
+
+			if (opcao > 3 || opcao < 1) {
+				System.out.println("Opção invalida - informe uma opção entre 1 e 3");
+				escolher = 'N';
+			} else {
+				if (opcao == 3) {
+					escolher = 'S';
+					break;
+				}
+			}
+
+			switch (opcao) {
+			case 1: {
+				System.out.println("Digite a altura");
+				caixa[0] = sc.next();
+				System.out.println("Digite a profundidade");
+				caixa[1] = sc.next();
+				System.out.println("Digite a largura");
+				caixa[2] = sc.next();
+				System.out.println("É fragil (SIM/NAO)");
+				caixa[3] = sc.next();
+
+				empilhar(caixa);
+				break;
+			}
+
+			case 2: {
+				pilha = desempilhar();
+
+				for (i = 0; i < pilha.length; i++) {
+					if (vazia()) {
+						System.out.println("A pilha está vazia");
+						break;
+					} else if (pilha[i][0] == null) {
+						break;
+					}
+					System.out.println("Caixa: " + (i + 1) + " | Altura: " + pilha[i][0] + " | profundidade: "
+							+ pilha[i][1] + " | Largura: " + pilha[i][2] + " | Frágil: " + pilha[i][3]);
+
+				}
+
+			}
+
+			}
+
+		} while (escolher == 'N');
+
+	}
+
+	public static void empilhar(String[] caixa) {
+		if (in < pilha.length - 1) {
+			pilha[++in][0] = caixa[0];
+			pilha[in][1] = caixa[1];
+			pilha[in][2] = caixa[2];
+			pilha[in][3] = caixa[3];
+		} else {
+			System.out.println("Voce chegou ao máximo de caixas empilhadas");
+		}
+
+	}
+
+	public static String[][] desempilhar() {
+		int i;
+		String novapilha[][];
+		novapilha = new String[pilha.length][4];
+		if (vazia()) {
+			System.out.println("Nenhuma caixa para empilhar");
+			return null;
+		}
+		for (i = 0; i < pilha.length; i++) {
+			if (i == in) {
+				break;
+
+			}
+			novapilha[i] = pilha[i];
+		}
+		in--;
+		return novapilha;
+
+	}
+
+	public static boolean vazia() {
+		if (in == -1) {
+			return true;
+		}
+		return false;
+
+	}
+
+}
